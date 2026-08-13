@@ -1,0 +1,25 @@
+# Copy to config/robot.yaml and edit for your network.
+#   cp config/robot.example.yaml config/robot.yaml
+
+robot:
+  id: home-bot
+  name: Home Bot
+  # Milestone 1 only implements "simulated". Hardware backends come later.
+  backend: simulated
+
+mqtt:
+  host: localhost
+  port: 1883
+  # Leave null for anonymous local brokers (docker-compose Mosquitto).
+  username: null
+  password: null
+  # Home Assistant MQTT discovery prefix (default unless changed in HA).
+  discovery_prefix: homeassistant
+  # All robot topics live under this prefix: {base_topic}/{robot.id}/...
+  base_topic: home_robot
+  keepalive_seconds: 30
+
+agent:
+  telemetry_interval_seconds: 2.0
+  # Simulated dock sequence length so you can watch mode changes quickly.
+  simulated_dock_seconds: 5.0

@@ -1,0 +1,22 @@
+# Local MQTT broker for Milestone 1 testing (no Home Assistant required).
+# Usage: docker compose up mosquitto
+#
+# On a real HAOS box, prefer the official Mosquitto add-on instead of this
+# compose file, and point mqtt.host at the HA host / add-on hostname.
+
+services:
+  mosquitto:
+    image: eclipse-mosquitto:2
+    ports:
+      - "1883:1883"
+    volumes:
+      - ./mosquitto/config/mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
+
+  agent:
+    build: .
+    depends_on:
+      - mosquitto
+    environment:
+      HOME_ROBOT_MQTT_HOST: mosquitto
+    command: ["python", "-m", "home_robot", "-c", "config/robot.example.yaml"]
+    profiles: ["agent"]

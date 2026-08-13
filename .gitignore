@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+dist/
+build/
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Local config / secrets (keep *.example.yaml tracked)
+.env
+config/robot.yaml
+
+# Editor
+.idea/
+.vscode/
+*.swp
+
+# Nested clone used during development; canonical files are at repo root.
+home-robot/
